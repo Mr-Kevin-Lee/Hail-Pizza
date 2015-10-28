@@ -1,0 +1,5 @@
+Master Cheese: The Search For The Ultimate Topping
+
+Files to be included:
+PizzaScript.JS
+GameManager.JS (currently PlayerStatsScript.JS)
