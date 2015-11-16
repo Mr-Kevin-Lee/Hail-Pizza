@@ -2,13 +2,10 @@
 import System.Collections.Generic;
 
 public var health = 1;
-public var scoreAmount = 0;
 public var invulnPeriod = 0.0;
 private var invulnTimer = 0.0;
 private var correctLayer : int;
 public var stats : PlayerStatsScript;
-public var gameManager : GameManagerScript;
-public var addScore = false;
 
 private var object : SpriteRenderer;
 
@@ -17,17 +14,11 @@ function Start () {
 }
 
 function OnTriggerEnter2D(other : Collider2D) {
+	Debug.Log(other.name);
     if (other.name == "PlainPizza") {
     	health--;
-    	stats = gameObject.Find("PlayerHealth1").GetComponent(PlayerStatsScript);
-    	stats.updatePlayerHealth(false);
+//    	update score
     }
-    
-    if (other.name == "bullet(Clone)") {
-    	health--;
-    	Destroy(other.gameObject);
-    	addScore = true;
-   	}
 
     if(invulnPeriod > 0) 
     {
@@ -57,10 +48,5 @@ function Update () {
 }
 
 function Die() {
-	if (addScore) {
-		gameManager = gameObject.Find("Background1").GetComponent(GameManagerScript);
-		gameManager.gameScore += scoreAmount;
-		gameManager.setGameScore();
-	}
     Destroy(gameObject);
 }

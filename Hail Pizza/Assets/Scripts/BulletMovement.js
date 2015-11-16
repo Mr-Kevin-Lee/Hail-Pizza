@@ -8,4 +8,8 @@ function Update () {
     var velocity : Vector3 = new Vector3(maxSpeed * Time.deltaTime, 0, 0);
     bulletPosition += transform.rotation * velocity;
     transform.position = bulletPosition;
+    
+    if (transform.position.x > 10) {
+    	Destroy(gameObject);
+    }
 }

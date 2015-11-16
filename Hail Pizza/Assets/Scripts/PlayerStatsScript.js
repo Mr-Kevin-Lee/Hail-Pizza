@@ -1,29 +1,32 @@
 ﻿//#pragma strict
-var player : DamageHandler;
+var player;
+var health : int;
+var gameManager : GameManagerScript;
 
 function Start () {
     //var v3Pos = Vector3(0.0, 1.0, 0.0);
     //transform.position = gui.camera.ViewportToWorldPoint(v3Pos);
+    health = 4;
 }
 
 // updates player health and changes sprite accordingly.
 function updatePlayerHealth(addHealth){
-    player = GameObject.Find("PlainPizza").GetComponent(DamageHandler);
+    player = GameObject.Find("PlainPizza");
     healthSprite1 = GameObject.Find("PlayerHealth1").GetComponent(SpriteRenderer);
     healthSprite2 = GameObject.Find("PlayerHealth2").GetComponent(SpriteRenderer);
     healthSprite3 = GameObject.Find("PlayerHealth3").GetComponent(SpriteRenderer);
     healthSprite4 = GameObject.Find("PlayerHealth4").GetComponent(SpriteRenderer);
 
     // update health
-//    if (addHealth)
-//        player.health++;
-//    else
-//        player.health--;
+    if (addHealth)
+        health++;
+    else
+        health--;
 
     // take action based on new health
-    if (player.health > 0) {
+    if (health > 0) {
         // player is alive   
-        switch(player.health) {
+        switch(health) {
             case 4:
                 healthSprite1.enabled = true;
                 healthSprite2.enabled = true;
@@ -49,7 +52,7 @@ function updatePlayerHealth(addHealth){
                 healthSprite4.enabled = false;
                 break;
         }
-        print("Player Health: " + player.health);
+        print("Player Health: " + health);
     }
     else {
         // player is dead
@@ -57,12 +60,15 @@ function updatePlayerHealth(addHealth){
         healthSprite2.enabled = false;
         healthSprite3.enabled = false;
         healthSprite4.enabled = false;
-        // gameOver()
+        gameOver();
     }
 }
 
 function gameOver() {
-
+	Destroy(player);
+	gameManager = gameObject.Find("Background1").GetComponent(GameManagerScript);
+	gameManager.gameRun = false;
+	gameManager.restartText();
 }
 
 function Update () {
