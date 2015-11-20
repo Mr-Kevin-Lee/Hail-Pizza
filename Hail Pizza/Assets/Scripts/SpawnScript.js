@@ -38,5 +38,6 @@ function TimerStart() {
 		Debug.Log("Timer UP");
 		spawn = !spawn;
 		timerOn = !timerOn;
+		GameObject.Find("Sphinx").GetComponent(MovementScript).move = 1;
 	}
 }
