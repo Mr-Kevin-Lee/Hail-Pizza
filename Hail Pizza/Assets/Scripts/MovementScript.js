@@ -3,6 +3,7 @@ import System.Collections.Generic;
 
 public var speed = 15.0;
 public var move = 1;
+public var destroy = 1;
 
 function Start() {}
 

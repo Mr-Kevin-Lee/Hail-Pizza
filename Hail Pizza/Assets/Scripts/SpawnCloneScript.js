@@ -6,14 +6,18 @@ var spawnTimeMax : float = 4.0;
 var spawn = true;
 var startTime;
 var deltaTime = 120;
+var bossStart = 30;
 var timer1 : int;
-var timerOn = true;
+var timer1On = true;
+public var bossClip : AudioClip;
 
 function Start () {
 	while (spawn) {
 		yield WaitForSeconds (Random.Range(spawnTimeMin, spawnTimeMax));
 		addObject();
 	}
+	
+	startTime = Time.time;
 }
 
 function addObject () {
@@ -26,18 +30,14 @@ function addObject () {
 }
 
 function Update() {
-	if (timerOn) {
-		TimerStart();
+	if (timer1On) {
+		timer1 = Time.time;
 	}
-}
-
-function TimerStart() {
-	startTime = Time.time;
-	timer1 = Time.time;
-	if (timer1 > deltaTime) {
+	
+	if ((timer1 > deltaTime) && timer1On) {
 		Debug.Log("Timer UP");
 		spawn = !spawn;
-		timerOn = !timerOn;
-		GameObject.Find("Sphinx").GetComponent(MovementScript).move = 1;
+		timer1On = !timer1On;
 	}
+	
 }
