@@ -5,9 +5,8 @@ var spawnTimeMin : float = 1.0;
 var spawnTimeMax : float = 4.0;
 var spawn = true;
 var startTime;
-var deltaTime = 120;
-var bossStart = 30;
-var timer1 : int;
+var deltaTime : int;
+var elapsedTime = 0.0;
 var timer1On = true;
 public var bossClip : AudioClip;
 
@@ -16,8 +15,6 @@ function Start () {
 		yield WaitForSeconds (Random.Range(spawnTimeMin, spawnTimeMax));
 		addObject();
 	}
-	
-	startTime = Time.time;
 }
 
 function addObject () {
@@ -31,13 +28,17 @@ function addObject () {
 
 function Update() {
 	if (timer1On) {
-		timer1 = Time.time;
+		elapsedTime += Time.deltaTime;
 	}
 	
-	if ((timer1 > deltaTime) && timer1On) {
+	if ((elapsedTime > deltaTime) && timer1On) {
 		Debug.Log("Timer UP");
 		spawn = !spawn;
 		timer1On = !timer1On;
 	}
 	
+}
+
+function resetTimer() {
+	elapsedTime = 0.0;
 }

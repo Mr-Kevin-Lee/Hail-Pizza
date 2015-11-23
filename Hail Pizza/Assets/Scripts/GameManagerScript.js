@@ -28,6 +28,8 @@ function Update() {
         if(Input.GetKeyDown("space"))
         {
             Application.LoadLevel("Level2");
+            GameObject.Find("spawn").GetComponent(SpawnCloneScript).resetTimer();
+            GameObject.Find("Sphinx").GetComponent(SpawnBossScript).resetTimer();
         }
     }
 }
