@@ -23,7 +23,7 @@ function OnTriggerEnter2D(other : Collider2D) {
     	stats.updatePlayerHealth(false);
     }
     
-    if (other.name == "bullet(Clone)") {
+    if (other.name == "bullet(Clone)" || other.name == "waveBullet(Clone)") {
     	health--;
     	Destroy(other.gameObject);
     	addScore = true;

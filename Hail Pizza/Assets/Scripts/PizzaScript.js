@@ -2,10 +2,17 @@
 var speed = 10;
 var health = 4;
 
+var powerup;
+
 function Start() {
 
 }
 
+function OnTriggerEnter2D(other : Collider2D) {
+	if (other.name == "pepperoni(Clone)") {
+		powerup = "pepperoni";
+	}
+}
 
 function Update () {
 	GetComponent.<Rigidbody2D>().velocity.y = Input.GetAxis("Vertical") * speed;
