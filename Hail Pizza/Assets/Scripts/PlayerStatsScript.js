@@ -18,8 +18,10 @@ function updatePlayerHealth(addHealth){
     healthSprite4 = GameObject.Find("PlayerHealth4").GetComponent(SpriteRenderer);
 
     // update health
-    if (addHealth)
-        health++;
+    if (addHealth) {
+        if(health < 4)
+            health++;
+    }
     else
         health--;
 

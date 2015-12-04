@@ -57,10 +57,13 @@ function Update () {
 }
 
 function Die() {
+	gameManager = gameObject.Find("Background1").GetComponent(GameManagerScript);
 	if (addScore) {
-		gameManager = gameObject.Find("Background1").GetComponent(GameManagerScript);
 		gameManager.gameScore += scoreAmount;
 		gameManager.setGameScore();
+	}
+	if (gameObject.name == "Sphinx") {
+		gameManager.levelComplete();
 	}
     Destroy(gameObject);
 }

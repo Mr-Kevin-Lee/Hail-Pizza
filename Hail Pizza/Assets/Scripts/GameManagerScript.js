@@ -7,6 +7,7 @@ var gameScoreText;
 var scoreText : Text;
 var gameOverText : Text;
 var retryText : Text;
+var levelCompleteText : Text;
 
 function Start () {
     gameOverText.text = "";
@@ -21,6 +22,13 @@ function setGameScore() {
 function restartText() {
     gameOverText.text = "GAME OVER";
     retryText.text = "PRESS SPACE TO RETRY";
+}
+
+function levelComplete() {
+    print("level complete");
+    GameObject.Find("LevelComplete").GetComponent(AudioSource).Play();
+    levelCompleteText.text = "NOT BAD";
+    retryText.text = "PRESS SPACE TO CONTINUE";
 }
 
 function Update() {

@@ -1,17 +1,20 @@
-﻿//var rb: Rigidbody;
+﻿import System.Collections.Generic;
+
 var speed = 10;
 var health = 4;
 
 var powerup;
 
 function Start() {
-
 }
 
 function OnTriggerEnter2D(other : Collider2D) {
-	if (other.name == "pepperoni(Clone)") {
-		powerup = "pepperoni";
-	}
+    Debug.Log(other.name);
+    if (other.name == "pepperoni(Clone)") {
+        powerup = "pepperoni";
+        stats = gameObject.Find("PlayerHealth1").GetComponent(PlayerStatsScript);
+        stats.updatePlayerHealth(true);
+    }
 }
 
 function Update () {
