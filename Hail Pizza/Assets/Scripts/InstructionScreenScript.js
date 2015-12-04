@@ -11,7 +11,7 @@ function Update () {
 
     if(Input.GetKeyDown("space"))
     {
-        Application.LoadLevel("Instructions");
+        Application.LoadLevel("Level2");
     }
 }
  
@@ -27,8 +27,4 @@ function FlashLabel() {
         yield WaitForSeconds(.5); 
     }
  
-}
-
-function Awake () {
-	DontDestroyOnLoad (this.GameObject);
 }

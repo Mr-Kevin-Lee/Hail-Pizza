@@ -2,6 +2,8 @@
 var player;
 var health : int;
 var gameManager : GameManagerScript;
+private var invulnTimer = 0.0;
+public var invulnPeriod = 1.5;
 
 function Start () {
     //var v3Pos = Vector3(0.0, 1.0, 0.0);
@@ -22,8 +24,19 @@ function updatePlayerHealth(addHealth){
         if(health < 4)
             health++;
     }
-    else
-        health--;
+    else {
+        if (invulnTimer >= invulnPeriod) {
+            health--;
+            invulnTimer = 0.0;
+        }
+        else if (invulnTimer == 0.0) {
+            invulnTimer += Time.deltaTime;
+            health--;
+        }
+        else {
+            invulnTimer += Time.deltaTime;
+        }
+    }
 
     // take action based on new health
     if (health > 0) {
@@ -74,7 +87,7 @@ function gameOver() {
 }
 
 function Update () {
-    // replace with check for collision
-//    if (GameObject.Find("PlainPizza"))
-//        updatePlayerHealth(false);
+    if (invulnTimer > 0.0) {
+    	invulnTimer += Time.deltaTime;
+    }
 }
