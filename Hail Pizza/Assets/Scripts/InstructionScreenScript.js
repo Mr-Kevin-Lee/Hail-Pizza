@@ -11,6 +11,7 @@ function Update () {
 
     if(Input.GetKeyDown("space"))
     {
+//        Destroy(GameObject.Find("pizza-background"));
         Application.LoadLevel("Level2");
     }
 }

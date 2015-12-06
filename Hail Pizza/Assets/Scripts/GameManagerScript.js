@@ -13,6 +13,10 @@ function Start () {
     gameOverText.text = "";
     retryText.text = "";
     setGameScore();
+    
+//    GameObject.Find("pizza-background").GetComponent(AudioSource).Stop();
+	Destroy(GameObject.Find("pizza-background"));
+    print("stopped");
 }
 
 function setGameScore() {

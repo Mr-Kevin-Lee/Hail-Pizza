@@ -12,6 +12,7 @@ function Update () {
     if(Input.GetKeyDown("space"))
     {
         Application.LoadLevel("Instructions");
+        this.enabled = false;
     }
 }
  
@@ -30,5 +31,12 @@ function FlashLabel() {
 }
 
 function Awake () {
-	DontDestroyOnLoad (this.GameObject);
+	DontDestroyOnLoad (gameObject);
 }
+
+//function onLevelWasLoaded(level : int){
+//	if (level == 2) {
+//		print("Detsroy");
+//		gameObject.GetComponent(AudioSource).Stop();
+//	}
+//}
